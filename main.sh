@@ -63,23 +63,42 @@ do
         ps
 
     elif [ "$choice" -eq 5 ]
-then
-    echo "----- LOG MANAGEMENT -----"
-
-    echo "1. View Logs"
-    echo "2. Count Log Lines"
-
-    read -p "Enter choice: " ch
-
-    if [ "$ch" -eq 1 ]
     then
-        cat sample.log
+        echo "----- LOG MANAGEMENT -----"
+        echo "1. View Logs"
+        echo "2. Count Log Lines"
 
-    elif [ "$ch" -eq 2 ]
+        read -p "Enter choice: " ch
+
+        if [ "$ch" -eq 1 ]
+        then
+            if [ -f sample.log ]
+            then
+                cat sample.log
+            else
+                echo "Log file not found!"
+            fi
+
+        elif [ "$ch" -eq 2 ]
+        then
+            if [ -f sample.log ]
+            then
+                wc -l sample.log
+            else
+                echo "Log file not found!"
+            fi
+
+        else
+            echo "Invalid Choice!"
+        fi
+
+    elif [ "$choice" -eq 6 ]
     then
-        wc -l sample.log
+        echo "Thank You!"
+        break
 
     else
         echo "Invalid Choice!"
     fi
+
 done
